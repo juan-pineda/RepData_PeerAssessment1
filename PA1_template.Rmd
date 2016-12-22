@@ -103,11 +103,18 @@ And now let's create a new table, which is a copy of the original one, but repla
     head(new_table)
 ```
 
-And finally let's calculate again the mean and median values of the distribution of total number of steps taken each day:
-
+Next let's take a look at the histogram of the total number of steps by day:
+    
 ```{r, echo=TRUE}
     steps_by_day <- na.omit(group_by(new_table, date))
     total_by_day <- summarize(steps_by_day, steps=sum(steps))
+    hist(total_by_day$steps,breaks=10, col='yellow',
+    main='Total number of steps per day', xlab='Number of steps')
+```
+
+And finally let's calculate again the mean and median values of the distribution of total number of steps taken each day:
+
+```{r, echo=TRUE}
     mean_value <- mean(total_by_day$steps)
     median_value <- median(total_by_day$steps)
 ```

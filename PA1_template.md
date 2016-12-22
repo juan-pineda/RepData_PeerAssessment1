@@ -151,12 +151,22 @@ And now let's create a new table, which is a copy of the original one, but repla
 ## 6 2.094 2012-10-01       25
 ```
 
-And finally let's calculate again the mean and median values of the distribution of total number of steps taken each day:
-
+Next let's take a look at the histogram of the total number of steps by day:
+    
 
 ```r
     steps_by_day <- na.omit(group_by(new_table, date))
     total_by_day <- summarize(steps_by_day, steps=sum(steps))
+    hist(total_by_day$steps,breaks=10, col='yellow',
+    main='Total number of steps per day', xlab='Number of steps')
+```
+
+![](PA1_template_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+
+And finally let's calculate again the mean and median values of the distribution of total number of steps taken each day:
+
+
+```r
     mean_value <- mean(total_by_day$steps)
     median_value <- median(total_by_day$steps)
 ```
@@ -188,6 +198,6 @@ Finally, let's plot the time-series at weekdays and weekends to see how they com
     type = "l", xlab="Interval", ylab="Number of steps", layout=c(1,2))
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
 
 
